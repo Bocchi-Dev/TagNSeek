@@ -15,26 +15,32 @@ public class Joystick : MonoBehaviour
     public Transform innerCircle;
     public Transform outerCircle;
 
-
-
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             pointA = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
+           
+            if(Input.mousePosition.x < Screen.width/2)
+            {
+                innerCircle.transform.position = pointA * -1;
+                outerCircle.transform.position = pointA * 1;
 
-            innerCircle.transform.position = pointA * -1;
-            outerCircle.transform.position = pointA * 1;
-
-            innerCircle.GetComponent<SpriteRenderer>().enabled = true;
-            outerCircle.GetComponent<SpriteRenderer>().enabled = true;
+                innerCircle.GetComponent<SpriteRenderer>().enabled = true;
+                outerCircle.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            
         }
 
         //If there is no touch on the screen
         if (Input.GetMouseButton(0))
         {
-            touchStart = true;
-            pointB = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
+            if(Input.mousePosition.x < Screen.width / 2)
+            {
+                touchStart = true;
+                pointB = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
+            }
+         
         }
         else
         {
