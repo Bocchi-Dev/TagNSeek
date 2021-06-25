@@ -1,0 +1,57 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class Joystick : MonoBehaviour
+{
+    public GameObject innerJoystickBG;
+    public GameObject outerJoystickBG;
+    public Vector2 joystickVector;
+    private Vector2 TouchPosition;
+    private Vector2 OriginalPosistion;
+    private float joystickRadius;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        OriginalPosistion = outerJoystickBG.transform.position;
+        joystickRadius = outerJoystickBG.GetComponent<RectTransform>().sizeDelta.y / 4;
+
+    }
+
+    public void PointerTouch()
+    {
+        outerJoystickBG.transform.position = Input.mousePosition;
+        innerJoystickBG.transform.positon = Input.mousePoistion;
+        TouchPosition = Input.mousePosition;
+        
+    }
+    public void Drag(BaseEventData baseEventData)
+    {
+        PointerEventData pointerEventData = baseEventData as PointerEventData;
+        Vector2 dragPosition = pointerEventData.position;
+        joystickVector = (dragPosition - TouchPosition).normalized;
+
+        float joystickDistance = Vector2.Distance(dragPosition, TouchPosition);
+        //InnerJoystick will only move within the outer joystick;
+        if(joystickDistance < joystickRadius)
+        {
+            innerJoystickBG.transform.position = TouchPosition + joystickVector * joystickDistance;
+        }
+        else
+        {
+            innerJoystickBG.transform.position = TouchPosition + joystickVector * joystickRadius;
+        }
+    }
+
+    //When screen is not touch;
+    public void PointerUntouch()
+    {
+        joystickVector = Vector2.zero;
+        innerJoystickBG.transform.position = OriginalPosistion;
+        outerJoystickBG.transform.position = OriginalPosistion;
+
+    }
+
+}
