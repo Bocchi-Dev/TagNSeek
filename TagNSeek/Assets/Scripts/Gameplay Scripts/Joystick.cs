@@ -11,14 +11,10 @@ public class Joystick : MonoBehaviour
     private Vector2 pointA;
     private Vector2 pointB;
 
+    //Game Objects
     public Transform innerCircle;
     public Transform outerCircle;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -33,6 +29,8 @@ public class Joystick : MonoBehaviour
             innerCircle.GetComponent<SpriteRenderer>().enabled = true;
             outerCircle.GetComponent<SpriteRenderer>().enabled = true;
         }
+
+        //If there is no touch on the screen
         if (Input.GetMouseButton(0))
         {
             touchStart = true;
@@ -43,6 +41,7 @@ public class Joystick : MonoBehaviour
             touchStart = false;
         }
     }
+
 
     private void FixedUpdate()
     {
@@ -61,6 +60,7 @@ public class Joystick : MonoBehaviour
         }
     }
 
+    //Character movement
     void moveCharacter(Vector2 direction)
     {
         player.Translate(direction * speed * Time.deltaTime);
