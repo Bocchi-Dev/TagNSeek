@@ -11,7 +11,7 @@ public class TagPlayer : MonoBehaviour
 
     public Image tagButton;
     public float tagCooldown = 5f;
-    bool isCooldown = false;
+    bool isCooldown;
 
     Vector2 currentSmallestDistance;
     Vector2 currentDistance;
@@ -21,6 +21,7 @@ public class TagPlayer : MonoBehaviour
     public Material defaultSpriteMaterial;
 
     [HideInInspector] public GameObject[] playersToClear;
+    bool tagButtonPressed;
 
     private void Awake()
     {
@@ -88,8 +89,10 @@ public class TagPlayer : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && isCooldown == false)
+        if (/*Input.GetKeyDown(KeyCode.E)*/tagButtonPressed == true && isCooldown == false)
         {
+            tagButtonPressed = false;
+
             if (playersInArea.Length == 0)
             {
                 return;
@@ -128,5 +131,10 @@ public class TagPlayer : MonoBehaviour
         {
             player.GetComponent<SpriteRenderer>().material = defaultSpriteMaterial;
         }
+    }
+
+    public void TagButton()
+    {
+        tagButtonPressed = true;
     }
 }
