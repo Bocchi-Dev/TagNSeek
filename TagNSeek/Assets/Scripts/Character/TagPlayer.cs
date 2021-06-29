@@ -49,8 +49,9 @@ public class TagPlayer : MonoBehaviour
         //Detects any untagged player in range
         Collider2D[] playersInArea = Physics2D.OverlapCircleAll(transform.position, tagRange, whatIsUntagged);
 
-        if (playersInArea.Length > 1)
+        if (playersInArea.Length > 1) //Check if 2 or more players are within tag range
         {
+            //Checks which player is the closest to the tagger so they would be the tag target
             for (int i = 0; i < playersInArea.Length; i++)
             {
                 currentDistance = playersInArea[i].GetComponent<Transform>().position;
@@ -74,13 +75,13 @@ public class TagPlayer : MonoBehaviour
             }
         }
 
-        else if (playersInArea.Length == 1)
+        else if (playersInArea.Length == 1) //Check if only one player is within tag range
         {
             taggedPlayer = 0;
             TagTarget(playersInArea[0]);
         }
 
-        else
+        else //Removes red outline if no player is within tag range
         {
             foreach (GameObject player in playersToClear)
             {
@@ -89,7 +90,8 @@ public class TagPlayer : MonoBehaviour
 
         }
 
-        if (/*Input.GetKeyDown(KeyCode.E)*/tagButtonPressed == true && isCooldown == false)
+        //When the tag button gets pressed, tag the player
+        if (tagButtonPressed == true && isCooldown == false)
         {
             tagButtonPressed = false;
 
@@ -108,6 +110,7 @@ public class TagPlayer : MonoBehaviour
 
         }
 
+        //Cooldown for the tag button
         if (isCooldown)
         {
             tagButton.fillAmount += 1 / tagCooldown * Time.deltaTime;
@@ -121,6 +124,7 @@ public class TagPlayer : MonoBehaviour
         }
     }
 
+    //Shows a red outline when an untagged is in range of getting tagged
     public void TagTarget(Collider2D player)
     {
         if (Vector2.Distance(transform.position, player.transform.position) < tagRange)
