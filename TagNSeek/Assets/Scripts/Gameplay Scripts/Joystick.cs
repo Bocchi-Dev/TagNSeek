@@ -17,6 +17,7 @@ public class Joystick : MonoBehaviour
 
     void Update()
     {
+        //calculate start position
         if (Input.GetMouseButtonDown(0))
         {
             pointA = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
@@ -32,7 +33,7 @@ public class Joystick : MonoBehaviour
             
         }
 
-        //If there is no touch on the screen
+        //calculate end position
         if (Input.GetMouseButton(0))
         {
             if(Input.mousePosition.x < Screen.width / 2)
@@ -50,6 +51,7 @@ public class Joystick : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //move character
         if (touchStart)
         {
             Vector2 offset = pointB - pointA;
@@ -65,7 +67,7 @@ public class Joystick : MonoBehaviour
         }
     }
 
-    //Character movement
+    //move character
     void moveCharacter(Vector2 direction)
     {
         player.Translate(direction * speed * Time.deltaTime);
