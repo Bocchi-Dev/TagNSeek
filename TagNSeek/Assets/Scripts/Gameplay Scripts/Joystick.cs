@@ -12,7 +12,7 @@ public class Joystick : MonoBehaviour
     private Vector2 pointA;
     private Vector2 pointB;
 
-    //Game Objects
+    //Joysticks
     public Transform innerCircle;
     public Transform outerCircle;
 
