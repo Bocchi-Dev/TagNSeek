@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Joystick : MonoBehaviour
 {
@@ -17,29 +18,28 @@ public class Joystick : MonoBehaviour
 
     void Update()
     {
-        //calculate start position
+        //calculate direction
         if (Input.GetMouseButtonDown(0))
         {
-            pointA = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
-           
+            pointA = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z);
+            
             if(Input.mousePosition.x < Screen.width/2)
             {
                 innerCircle.transform.position = pointA * -1;
                 outerCircle.transform.position = pointA * 1;
 
-                innerCircle.GetComponent<SpriteRenderer>().enabled = true;
-                outerCircle.GetComponent<SpriteRenderer>().enabled = true;
+                innerCircle.GetComponent<Image>().enabled = true;
+                outerCircle.GetComponent<Image>().enabled = true;
             }
             
         }
 
-        //calculate end position
         if (Input.GetMouseButton(0))
         {
             if(Input.mousePosition.x < Screen.width / 2)
             {
                 touchStart = true;
-                pointB = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
+                pointB = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z);
             }
         }
         else
@@ -62,12 +62,12 @@ public class Joystick : MonoBehaviour
         }
         else
         {
-            innerCircle.GetComponent<SpriteRenderer>().enabled = false;
-            outerCircle.GetComponent<SpriteRenderer>().enabled = false;
+            innerCircle.GetComponent<Image>().enabled = false;
+            outerCircle.GetComponent<Image>().enabled = false;
         }
     }
 
-    //move character
+    //move character function
     void moveCharacter(Vector2 direction)
     {
         player.Translate(direction * speed * Time.deltaTime);
