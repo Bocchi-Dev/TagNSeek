@@ -382,7 +382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 612435209}
   - component: {fileID: 612435208}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: testGate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 672706803}
   - component: {fileID: 672706804}
   - component: {fileID: 672706801}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: testItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -569,6 +569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 672706799}
+  pickedUp: 0
 --- !u!58 &672706803
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -976,7 +977,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1248068095}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1926036074}
+        m_TargetAssemblyTypeName: Interact, Assembly-CSharp
+        m_MethodName: buttonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1248068095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,6 +1257,7 @@ GameObject:
   - component: {fileID: 1926036073}
   - component: {fileID: 1926036069}
   - component: {fileID: 1926036071}
+  - component: {fileID: 1926036074}
   - component: {fileID: 1926036070}
   - component: {fileID: 1926036072}
   m_Layer: 0
@@ -1411,3 +1425,23 @@ MonoBehaviour:
   tagged: 0
   score: 0
   username: 
+--- !u!114 &1926036074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926036066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1179368e46793e3409354b2e91486227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRange: 0
+  whatIsItem:
+    serializedVersion: 2
+    m_Bits: 8
+  whatIsInteractable:
+    serializedVersion: 2
+    m_Bits: 64
+  interactButtonPressed: 0

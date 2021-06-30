@@ -38,8 +38,10 @@ public class Interact : MonoBehaviour
                         if(interactButtonPressed)
                         {
                             GameObject item = itemsInArea[0].gameObject;
+                            Debug.Log(item.name);
                             inventory.isFull[i] = true;
-                            Instantiate(item, inventory.slots[i].transform, false);
+                            item.transform.position = inventory.slots[i].transform.position;
+                            interactButtonPressed = false;
                             break;
                         }
                     }
@@ -48,8 +50,14 @@ public class Interact : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        
+    }
+
     public void buttonPressed()
     {
         interactButtonPressed = true;
+        Debug.Log(interactButtonPressed);
     }
 }
