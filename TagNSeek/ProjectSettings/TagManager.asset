@@ -8,11 +8,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Item
   - Water
   - UI
   - Tagged
   - Untagged
+  - Interactable
   - 
   - 
   - 
