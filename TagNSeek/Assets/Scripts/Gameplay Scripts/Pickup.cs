@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//script from tutorial, not sure if still needed since you can pickup item from interact script
 public class Pickup : MonoBehaviour
 {
     private Inventory inventory;
@@ -22,9 +23,9 @@ public class Pickup : MonoBehaviour
     //{
     //    if (collision.CompareTag("Player"))
     //    {
-    //        for(int i = 0; i < inventory.slots.Length; i++)
+    //        for (int i = 0; i < inventory.slots.Length; i++)
     //        {
-    //            if(inventory.isFull[i] == false)
+    //            if (inventory.isFull[i] == false)
     //            {
     //                //add item
     //                inventory.isFull[i] = true;
